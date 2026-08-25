@@ -1,22 +1,6 @@
 # devops-on-cloud
 
-Infraestrutura como código (Terraform) do Not So Simple Ecommerce na AWS.
+Monorepo com a aplicação **Not So Simple Ecommerce** e a infraestrutura AWS em Terraform.
 
-## Módulos
-
-Aplique na ordem:
-
-1. **backend** — bucket S3 e tabela DynamoDB para o state remoto
-2. **networking** — VPC, subnets, NAT, Internet Gateway e rotas
-3. **server** — EC2 (control plane e workers) e patching via SSM
-4. **serverless** — filas, tópicos, storage, bancos, Lambdas e e-mail
-
-```bash
-./apply-all.sh
-```
-
-Para destruir (ordem inversa nos módulos críticos):
-
-```bash
-./destroy-all.sh
-```
+- [`not-so-simple-ecommerce/`](not-so-simple-ecommerce) — microserviços .NET, frontend React e stack local (Docker Compose)
+- [`nsse-iac/`](nsse-iac) — infraestrutura na AWS (backend de state, networking, server e serverless)

@@ -11,10 +11,8 @@ override.tf.json
 *.tfvars
 *.tfvars.json
 !example.tfvars
-.env
-.env.*
-!.env.example
+.DS_Store
 *.pem
 *.key
-*.pfx
-.DS_Store
+.env
+.env.*
