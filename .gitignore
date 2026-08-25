@@ -1,6 +1,4 @@
 .terraform/
-*.tfstate
-*.tfstate.*
 crash.log
 crash.*.log
 override.tf
@@ -13,7 +11,4 @@ override.tf.json
 !example.tfvars
 .env.*
 !.env.example
-*.pem
-*.key
-*.pfx
 .DS_Store
