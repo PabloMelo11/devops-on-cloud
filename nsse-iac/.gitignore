@@ -14,5 +14,4 @@ override.tf.json
 .DS_Store
 *.pem
 *.key
-.env
 .env.*

@@ -201,7 +201,6 @@ ClientBin/
 *.pfx
 *.key
 *.pem
-.env
 .env.*
 !.env.example
 *.publishsettings
