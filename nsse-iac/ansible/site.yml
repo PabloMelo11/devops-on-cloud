@@ -4,6 +4,7 @@
   become: true
   roles:
     - dependency-packages
+    - kube-packages
   # tasks:
   #   - name: Ping Control Plane
   #     ansible.builtin.ping:
