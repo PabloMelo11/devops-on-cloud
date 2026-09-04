@@ -288,5 +288,5 @@ variable "ssm_patching_logs_bucket" {
 
 variable "bucket_ssm" {
   type    = string
-  default = "not-so-simple-ecommerce-ssm"
+  default = "not-so-simple-ecommerce-ansible-ssm"
 }

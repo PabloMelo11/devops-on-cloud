@@ -1,0 +1,9 @@
+plugin: amazon.aws.aws_ec2
+profile: 494923043_administrator ## precisa trocar esse profile
+regions:
+  - us-east-1
+groups:
+  control_planes: "'nsse-production-control-plane' in tags.Name"
+  workers: "'nsse-production-worker' in tags.Name"
+hostnames:
+  - instance-id
