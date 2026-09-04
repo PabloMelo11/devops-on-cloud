@@ -1,9 +1,9 @@
-- name: Ping Control Planes
-  hosts: control_planes
+---
+- name: Create Kube Adm Kubernetes Cluster
+  hosts: aws_ec2 # aws_ec2 seria todos os hosts
   become: true
-  vars:
-    ansible_connection: true
-    ansible_aws_ssm_bucket_name: not-so-simple-ecommerce-ansible-ssm
-  tasks:
-    - name: Ping Control Plane
-      ansible.builtin.ping:
+  roles:
+    - dependency-packages
+  # tasks:
+  #   - name: Ping Control Plane
+  #     ansible.builtin.ping:
