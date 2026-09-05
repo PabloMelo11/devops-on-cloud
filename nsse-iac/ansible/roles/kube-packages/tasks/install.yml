@@ -1,6 +1,7 @@
 ---
 - name: Install kubectl, kubeadm and kubelet
   apt:
+    name:
     - kubectl
     - kubeadm
     - kubelet

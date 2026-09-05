@@ -5,6 +5,7 @@
   roles:
     - dependency-packages
     - kube-packages
+    - container-runtime
   # tasks:
   #   - name: Ping Control Plane
   #     ansible.builtin.ping:
