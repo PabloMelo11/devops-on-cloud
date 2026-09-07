@@ -13,6 +13,7 @@ resource "aws_autoscaling_group" "this" {
   health_check_type   = var.auto_scaling_group.health_check_type
   vpc_zone_identifier = var.auto_scaling_group.vpc_zone_identifier
   # vpc_zone_identifier = data.aws_subnets.private_subnets.ids
+  target_group_arns   = var.auto_scaling_group.target_group_arns
 
   launch_template {
     name    = aws_launch_template.this.name

@@ -290,3 +290,39 @@ variable "bucket_ssm" {
   type    = string
   default = "not-so-simple-ecommerce-ansible-ssm"
 }
+
+variable "network_load_balancer" {
+  type = object({
+    name = string
+    internal = bool
+    load_balancer_type = string
+    default_tg = object({
+      name = string
+      target_type = string
+      port = number
+      protocol = string
+      preserve_client_ip = bool
+    })
+    default_listener = object({
+      port = number
+      protocol = string
+    })
+  })
+
+  default = {
+    name = "nsse-production-cp-nlb"
+    internal = true
+    load_balancer_type = "network"
+    default_tg = {
+      name = "nsse-production-cp-nlb-tcp-tg"
+      target_type = "instance"
+      port = 6443
+      protocol = "TCP"
+      preserve_client_ip = false
+    }
+    default_listener = {
+      port = 6443
+      protocol = "TCP"
+    }
+  }
+}

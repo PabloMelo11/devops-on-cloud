@@ -37,6 +37,7 @@ variable "auto_scaling_group" {
     health_check_grace_period = number
     health_check_type         = string
     vpc_zone_identifier       = list(string)
+    target_group_arns         = list(string)
     instance_tags = object({
       Name        = string
       Project     = string
