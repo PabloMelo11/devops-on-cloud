@@ -1,12 +1,21 @@
----
-- name: Create Kube Adm Kubernetes Cluster
-  hosts: aws_ec2 # aws_ec2 seria todos os hosts
-  become: true
-  roles:
-    - dependency-packages
-    - kube-packages
-    - container-runtime
-    - kubeadm-init-first-master
+# ---
+# - name: Create Kube Adm Kubernetes Cluster
+#   hosts: aws_ec2 # aws_ec2 seria todos os hosts
+#   become: true
+#   roles:
+#     - dependency-packages
+#     - kube-packages
+#     - container-runtime
   # tasks:
   #   - name: Ping Control Plane
   #     ansible.builtin.ping:
+
+---
+- name: KubeAdm Init First Control Plane
+  hosts: control_plane[0]
+  become: true
+  environment:
+    KUBECONFIG: "{{ kube_config }}"
+  roles:
+    - kubeadm-init-first-master
+    - container-network

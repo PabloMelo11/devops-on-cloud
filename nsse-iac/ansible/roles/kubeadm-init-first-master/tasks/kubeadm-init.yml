@@ -1,0 +1,9 @@
+---
+- name: Kubeadm init
+  shell: kubeadm reset -f && kubeadm init --config /home/admin/kubeadm-init.yml
+  # shell: kubeadm init --config /home/admin/kubeadm-init.yml
+  register: kubeadm_init_output
+
+- name: KubeAdm Init (output)
+  debug:
+    var: kubeadm_init_output.stdout_lines
