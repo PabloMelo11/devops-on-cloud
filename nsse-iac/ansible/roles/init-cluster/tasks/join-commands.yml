@@ -1,14 +1,27 @@
 ---
 - name: Generate join command
-  shell: kubeadm token create --print-join-command --ttl 0
-  register: join_command_output
+  shell: kubeadm token create --print-join-command --ttl 0 # ttl = 0 means the token never expires
+  register: join_command_output # register means to save the output of the command into a variable
 
+---
 - name: Generate Certificate Key
   shell: kubeadm init phase upload-certs --upload-certs | tail -n 1
-  register: certificate_key_output
+  register: certificate_key_output # register means to save the output of the command into a variable
 
-- name: Write Join Command to File
+# - name: Debug Join Command
+#   debug:
+#     var: join_command_output.stdout
+
+---
+- name: Write Join Command to File for Control Plane
   copy:
     content: "{{ join_command_output.stdout }} --control-plane --certificate-key {{ certificate_key_output.stdout }}"
     dest: /tmp/kubeadm-join-control-plane.txt
+  delegate_to: localhost
+
+---
+- name: Write Join Command to File for Workers
+  copy:
+    content: "{{ join_command_output.stdout }}"
+    dest: /tmp/kubeadm-join-worker.txt
   delegate_to: localhost

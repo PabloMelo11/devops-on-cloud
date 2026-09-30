@@ -1,11 +1,11 @@
-# ---
-# - name: Create Kube Adm Kubernetes Cluster
-#   hosts: aws_ec2 # aws_ec2 seria todos os hosts
-#   become: true
-#   roles:
-#     - dependency-packages
-#     - kube-packages
-#     - container-runtime
+---
+- name: Create Kube Adm Kubernetes Cluster
+  hosts: aws_ec2 # aws_ec2 seria todos os hosts
+  become: true
+  roles:
+    - dependency-packages
+    - kube-packages
+    - container-runtime
   # tasks:
   #   - name: Ping Control Plane
   #     ansible.builtin.ping:
@@ -13,7 +13,7 @@
 ---
 - name: Init Cluster
   hosts: control_plane[0]
-  become: true
+  become: true # become means to execute the tasks with elevated privileges (sudo)
   environment:
     KUBECONFIG: "{{ kube_config }}"
   roles:
@@ -28,3 +28,12 @@
     KUBECONFIG: "{{ kube_config }}"
   roles:
     - join-control-planes
+
+---
+- name: Join Workers
+  hosts: workers
+  become: true
+  environment:
+    KUBECONFIG: "{{ kube_config }}"
+  roles:
+    - join-workers
