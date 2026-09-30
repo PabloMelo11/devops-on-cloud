@@ -11,11 +11,20 @@
   #     ansible.builtin.ping:
 
 ---
-- name: KubeAdm Init First Control Plane
+- name: Init Cluster
   hosts: control_plane[0]
   become: true
   environment:
     KUBECONFIG: "{{ kube_config }}"
   roles:
-    - kubeadm-init-first-master
+    - init-cluster
     - container-network
+
+---
+- name: Join Control Plane
+  hosts: control_planes:!control_plane[0]
+  become: true
+  environment:
+    KUBECONFIG: "{{ kube_config }}"
+  roles:
+    - join-control-planes
