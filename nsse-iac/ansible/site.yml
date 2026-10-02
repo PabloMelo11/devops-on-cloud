@@ -1,8 +1,9 @@
 ---
-- name: Create Kube Adm Kubernetes Cluster
+- name: Setting Up Cluster
   hosts: aws_ec2 # aws_ec2 seria todos os hosts
   become: true
   roles:
+    - hostnames
     - dependency-packages
     - kube-packages
     - container-runtime
