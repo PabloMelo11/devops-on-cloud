@@ -154,12 +154,13 @@ variable "control_plane_auto_scaling_group" {
 
 variable "worker_auto_scaling_group" {
   type = object({
-    name                      = string
-    max_size                  = number
-    min_size                  = number
-    desired_capacity          = number
-    health_check_grace_period = number
-    health_check_type         = string
+    name                           = string
+    max_size                       = number
+    min_size                       = number
+    desired_capacity               = number
+    health_check_grace_period      = number
+    health_check_type              = string
+    cluster_autoscaler_policy_name = string
     instance_tags = object({
       Name = string
     })
@@ -170,12 +171,13 @@ variable "worker_auto_scaling_group" {
   })
 
   default = {
-    name                      = "nsse-production-worker-asg"
-    max_size                  = 1
-    min_size                  = 1
-    desired_capacity          = 1
-    health_check_grace_period = 180
-    health_check_type         = "EC2"
+    name                           = "nsse-production-worker-asg"
+    max_size                       = 1
+    min_size                       = 1
+    desired_capacity               = 1
+    health_check_grace_period      = 180
+    health_check_type              = "EC2"
+    cluster_autoscaler_policy_name = "nsse-production-cluster-autoscaler-policy"
     instance_tags = object({
       Name = "nsse-production-worker"
     })

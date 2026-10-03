@@ -29,7 +29,11 @@ module "ec2_instances_worker" {
     instance_tags = merge(
       var.tags,
       var.worker_auto_scaling_group.instance_tags,
-      { PatchGroup = var.patch_group }
+      { PatchGroup = var.patch_group },
+      {
+        "k8s.io/cluster-autoscaler/enabled"                 = "true",
+        "k8s.io/cluster-autoscaler/devops-na-nuvem-cluster" = "owned"
+      }
     )
     instance_maintenance_policy = {
       min_healthy_percentage = var.worker_auto_scaling_group.instance_maintenance_policy.min_healthy_percentage
