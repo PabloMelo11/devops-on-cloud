@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fucntion installSystemsManagerAgentOnEC2() {
+function installSystemsManagerAgentOnEC2() {
   apt-get update -y
 
   if [ ! -d "/tmp/ssm" ]; then
