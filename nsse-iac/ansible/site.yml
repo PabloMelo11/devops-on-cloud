@@ -36,6 +36,13 @@
     - join-workers
 
 ---
+  - name: Update Launch Template
+    hosts: localhost
+    gather_facts: false
+    roles:
+      - update-launch-template
+
+---
 - name: Setting Up Cluster Auto Scaler
   hosts: control_plane[0]
   become: true # become means to execute the tasks with elevated privileges (sudo)
