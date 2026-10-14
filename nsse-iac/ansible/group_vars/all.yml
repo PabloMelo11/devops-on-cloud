@@ -6,4 +6,5 @@ aws_access_key: ''
 aws_secret_access_key: ''
 aws_profile: 494923043_administrator
 kube_config: /etc/kubernetes/admin.conf
+kube_config_worker: /etc/kubernetes/kubelet.conf
 

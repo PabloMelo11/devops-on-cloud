@@ -62,8 +62,21 @@ function joinWorkerNode() {
   {{ joinWorkerCommand }}
 }
 
+function updateProviderId() {
+  export KUBECONFIG=/etc/kubernetes/kubelet.conf
+
+  instanceId=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+  availabilityZone=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
+  providerId="aws:///$availabilityZone/$instanceId"
+  hostname=$(hostname)
+
+  kubectl patch node $ -p "{\"spec\":{\"providerID\":\"$providerId\"}}"
+}
+
 updateHostname
 installSystemsManagerAgentOnEC2
 installKubernetesDependencyPackages
 installKubernetesPackages
 installContainerRuntime
+joinWorkerNode
+updateProviderId

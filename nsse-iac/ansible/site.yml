@@ -19,21 +19,28 @@
     KUBECONFIG: "{{ kube_config }}"
   roles:
     - init-cluster
+    - set-provider-id
     - container-network
 
 ---
 - name: Join Control Plane
   hosts: control_planes:!control_plane[0]
   become: true
+  environment:
+    KUBECONFIG: "{{ kube_config }}"
   roles:
     - join-control-planes
+    - set-provider-id
 
 ---
 - name: Join Workers
   hosts: workers
   become: true
+  environment:
+    KUBECONFIG: "{{ kube_config_worker }}"
   roles:
     - join-workers
+    - set-provider-id
 
 ---
   - name: Update Launch Template
