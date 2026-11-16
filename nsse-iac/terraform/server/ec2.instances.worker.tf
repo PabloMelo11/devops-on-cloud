@@ -31,8 +31,9 @@ module "ec2_instances_worker" {
       var.worker_auto_scaling_group.instance_tags,
       { PatchGroup = var.patch_group },
       {
-        "k8s.io/cluster-autoscaler/enabled"                 = "true",
-        "k8s.io/cluster-autoscaler/devops-na-nuvem-cluster" = "owned"
+        "k8s.io/cluster-autoscaler/enabled"                 = true,
+        "k8s.io/cluster-autoscaler/devops-na-nuvem-cluster" = "owned",
+        "aws-node-termination-handler/managed"              = true
       }
     )
     instance_maintenance_policy = {

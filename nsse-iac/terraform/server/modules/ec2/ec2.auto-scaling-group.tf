@@ -13,7 +13,7 @@ resource "aws_autoscaling_group" "this" {
   health_check_type   = var.auto_scaling_group.health_check_type
   vpc_zone_identifier = var.auto_scaling_group.vpc_zone_identifier
   # vpc_zone_identifier = data.aws_subnets.private_subnets.ids
-  target_group_arns   = var.auto_scaling_group.target_group_arns
+  target_group_arns = var.auto_scaling_group.target_group_arns
 
   launch_template {
     name    = aws_launch_template.this.name
@@ -24,6 +24,9 @@ resource "aws_autoscaling_group" "this" {
     min_healthy_percentage = var.auto_scaling_group.instance_maintenance_policy.min_healthy_percentage
     max_healthy_percentage = var.auto_scaling_group.instance_maintenance_policy.max_healthy_percentage
   }
+
+  // Optional: Suspend AZRebalance process to avoid unnecessary instance replacement during AZ rebalancing
+  suspended_processes = ["AZRebalance"]
 
   # tag {
   #   key                 = "Project"

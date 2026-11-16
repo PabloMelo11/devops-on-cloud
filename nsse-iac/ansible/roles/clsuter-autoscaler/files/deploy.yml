@@ -169,7 +169,8 @@ spec:
             - --expander=least-waste
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/devops-na-nuvem-cluster
             - --skip-nodes-with-system-pods=false
-            - --scale-down-delay-after-add=5m
+            - --scale-down-delay-after-add=3m
+            - --scale-down-unneeded-time=3m
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt # /etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes

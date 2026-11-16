@@ -328,3 +328,25 @@ variable "network_load_balancer" {
     }
   }
 }
+
+variable "node_termination" {
+  type = object({
+    queue_name                = string
+    role_name                 = string
+    policy_name               = string
+    hook_name                 = string
+    hook_default_result       = string
+    hook_heartbeat_timeout    = number
+    hook_lifecycle_transition = string
+  })
+
+  default = {
+    queue_name                = "NodeTerminationQueue"
+    role_name                 = "nsse-production-node-termination-role"
+    policy_name               = "nsse-production-node-termination-policy"
+    hook_name                 = "NodeTerminationNotification"
+    hook_default_result       = "CONTINUE"
+    hook_heartbeat_timeout    = 300
+    hook_lifecycle_transition = "autoscaling:EC2_INSTANCE_TERMINATING"
+  }
+}

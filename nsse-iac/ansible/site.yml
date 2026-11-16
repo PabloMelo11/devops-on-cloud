@@ -56,4 +56,5 @@
   environment:
     KUBECONFIG: "{{ kube_config }}"
   roles:
+    - node-termination
     - cluster-autoscaler
