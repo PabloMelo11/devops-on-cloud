@@ -56,5 +56,6 @@
   environment:
     KUBECONFIG: "{{ kube_config }}"
   roles:
+    - cloud-controller
     - node-termination
     - cluster-autoscaler

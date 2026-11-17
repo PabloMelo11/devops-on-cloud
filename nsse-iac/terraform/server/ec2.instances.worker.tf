@@ -33,7 +33,8 @@ module "ec2_instances_worker" {
       {
         "k8s.io/cluster-autoscaler/enabled"                 = true,
         "k8s.io/cluster-autoscaler/devops-na-nuvem-cluster" = "owned",
-        "aws-node-termination-handler/managed"              = true
+        "aws-node-termination-handler/managed"              = true,
+        "kubernetes.io/cluster/devops-na-nuvem-cluster"     = "owned"
       }
     )
     instance_maintenance_policy = {

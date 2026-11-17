@@ -29,7 +29,10 @@ module "ec2_instances_control_plane" {
     instance_tags = merge(
       var.tags,
       var.control_plane_auto_scaling_group.instance_tags,
-      { PatchGroup = var.patch_group }
+      { PatchGroup = var.patch_group },
+      {
+        "kubernetes.io/cluster/devops-na-nuvem-cluster" = "owned"
+      }
     )
     instance_maintenance_policy = {
       min_healthy_percentage = var.control_plane_auto_scaling_group.instance_maintenance_policy.min_healthy_percentage

@@ -84,5 +84,3 @@ resource "aws_autoscaling_lifecycle_hook" "node_termination" {
   notification_target_arn = aws_sqs_queue.node_termination.arn
   role_arn                = aws_iam_role.node_termination.arn
 }
-
-# parei no minuto 50
