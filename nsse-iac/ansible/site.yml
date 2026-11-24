@@ -60,3 +60,4 @@
     - node-termination
     - cluster-autoscaler
     - metrics-server
+    - load-balancer-controller

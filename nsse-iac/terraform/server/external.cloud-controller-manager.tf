@@ -79,5 +79,5 @@ resource "aws_iam_policy" "controller_manager" {
 
 resource "aws_iam_role_policy_attachment" "controller_manager" {
   policy_arn = aws_iam_policy.controller_manager.arn
-  role       = aws_iam_role.controller_manager.name
+  role       = aws_iam_role.instance_role.name
 }
